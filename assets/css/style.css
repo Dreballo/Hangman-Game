@@ -1,0 +1,38 @@
+body {
+	
+	background-color: black;
+	font-family: 'Times', 'Times New Roman', sans-serif;
+	line-height:150%;
+	color: #ffffff;
+
+}
+
+
+h1{
+	font-family: 'Russo One', sans-serif;
+	font-size: 3em;
+	color: #ffffff;
+	text-align: center;
+	padding: 2em;
+
+}
+
+p{
+	text-align: center;
+}
+
+button{
+
+	padding: 1em;
+	position:relative;
+	margin-left: 48%;
+}
+
+
+.game-container {
+
+	text-align: center;
+	margin-top: 50px;
+
+
+}
