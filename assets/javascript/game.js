@@ -13,7 +13,7 @@
 //8. check if they won - start over
 
 var randomNumber = function(length) {
-	return Math.floor(Math.random() * length);
+    return Math.floor(Math.random() * length);
 };
 
 
@@ -31,33 +31,23 @@ $(document).ready(function() {
 
 
 
-    //variables for collecting data
-    var challengeWord = wordArray[ randomNumber(wordArray.length) ];
+    //variable for selecting challenge word from bank for user to guess with keystrokes
+    var challengeWord = wordArray[randomNumber(wordArray.length)];
+
+
     var remainingLetters = challengeWord.length;
+
+    //variables for collecting data
     var userGuess;
-    //var storedGuess = [];
-    //var storedUGuess = [];
     var fouls = 0;
     var points = 0;
-    //var counter;
-    //var space;
+    var answerArray = [];
 
-    //function for selecting challenge word from bank for user to guess with keystrokes
-
-    $("#reset").on("click",function(){
-    	fouls=0;
-    	console.log(challengeWord);
-    	challengeWord = wordArray[randomNumber(wordArray.length)];
-    	console.log(challengeWord);
-    });
-
-			
-   
 
     //for loop to replacing the challenge word with "-" spaces
     console.log(challengeWord);
 
-    var answerArray = [];
+
 
     for (i = 0; i < challengeWord.length; i++) {
 
@@ -71,11 +61,7 @@ $(document).ready(function() {
 
 
     //capturing user keystrokes for game input
-    //while(remainingLetters > 0) {
 
-    //answerArray.join("");
-
-    //}
     console.log(challengeWord)
 
     document.onkeyup = function(event) {
@@ -84,14 +70,18 @@ $(document).ready(function() {
 
         $challengeWord.empty();
 
-        if(challengeWord.indexOf(userGuess) == -1) {
-        		fouls++;
+        if (challengeWord.indexOf(userGuess) == -1) {
+            fouls++;
+
+            $("#fouls").append("<p>Fouls: " + fouls + "</p>");
         }
 
-        if(fouls > 5){
-        	alert("GAME OVER");
+        //User gets 5 fouls and game over on the 6th.
 
-        	return;
+        if (fouls > 5) {
+            alert("YOU FOULED OUT!!! GAME OVER");
+
+            return;
         }
 
         for (var j = 0; j < challengeWord.length; j++) {
@@ -108,21 +98,53 @@ $(document).ready(function() {
         $challengeWord.append(answerArray.join(""));
         console.log($challengeWord.text(), challengeWord);
 
-        if ($challengeWord.text() == challengeWord){
 
-        	points++;
-        	alert("You scored: " + points);
+        //counter for points
+        if ($challengeWord.text() == challengeWord) {
+
+            points++;
+
+
+            //alert("You scored: " + points);
+
+            $("#score").append("<p>Score: " + points + "</p>");	
+
+			
         }
 
     }
 
+    // Here we create the HTML that will be injected into our div and displayed on the page.
+    //$("#score").append("<p>Score: " + points + "</p>" + "<p>Fouls: " + fouls + "</p>");
+
+    // Injecting the HTML we just created into our div and updating the game information on our page.
+    
 
 
 
-    //User gets 5 fouls and game over on the 6th.
+    //Reset the game with the tip off button
+    $("#reset").on("click", function() {
+        
+        fouls = 0;
+        answerArray = [];
+        
+        $('#challenge-word').empty();
+
+        challengeWord = wordArray[randomNumber(wordArray.length)];
+
+        for (i = 0; i < challengeWord.length; i++) {
+
+        answerArray[i] = "-";
+
+        $challengeWord.append(answerArray[i]);
+
+        console.log(challengeWord);
 
 
+    }
+       
 
+    });
 
 
 
