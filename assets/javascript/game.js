@@ -73,7 +73,7 @@ $(document).ready(function() {
         if (challengeWord.indexOf(userGuess) == -1) {
             fouls++;
 
-            $("#fouls").append("<p>Fouls: " + fouls + "</p>");
+            $("#fouls").html("<p>Fouls: " + fouls + "</p>");
         }
 
         //User gets 5 fouls and game over on the 6th.
@@ -107,7 +107,7 @@ $(document).ready(function() {
 
             //alert("You scored: " + points);
 
-            $("#score").append("<p>Score: " + points + "</p>");	
+            $("#score").html("<p>Score: " + points + "</p>");	
 
 			
         }
